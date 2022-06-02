@@ -16,4 +16,15 @@ public class CourseService {
     public List<Course> getAllCourses() {
         return (List<Course>) courseRepository.findAll();
     }
+
+    public Course addCourse(Course newCourse) {
+        try {
+            Course storeCourse = courseRepository.save(newCourse);
+            return storeCourse;
+        }
+        catch (Exception ex) {
+            throw new IllegalArgumentException("Something went wrong in saving the course");
+        }
+    }
+
 }

@@ -22,4 +22,9 @@ public class Course {
     private String lecturerName;
     private Integer courseDuration;
 
+    public Course(String courseName, String lecturerName, Integer courseDuration) {
+        this.courseName = courseName;
+        this.lecturerName = lecturerName;
+        this.courseDuration = courseDuration;
+    }
 }

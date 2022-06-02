@@ -14,7 +14,17 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public List<Student> getAllStudents() {
-
         return studentRepository.findAll();
+    }
+
+    public Student addStudent(Student newStudent) {
+        try {
+            Student storeStudent = studentRepository.save(newStudent);
+            return storeStudent;
+        }
+        catch (Exception ex) {
+            throw new IllegalArgumentException("something went wrong in adding student");
+        }
+
     }
 }
