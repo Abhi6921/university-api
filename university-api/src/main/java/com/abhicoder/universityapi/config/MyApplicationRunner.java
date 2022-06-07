@@ -1,11 +1,10 @@
 package com.abhicoder.universityapi.config;
 
 import com.abhicoder.universityapi.model.Course;
-import com.abhicoder.universityapi.model.Student;
+import com.abhicoder.universityapi.model.User;
 import com.abhicoder.universityapi.repository.CourseRepository;
-import com.abhicoder.universityapi.repository.StudentRepository;
+import com.abhicoder.universityapi.repository.UserRepository;
 import lombok.extern.java.Log;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,24 +19,24 @@ import java.util.List;
 public class MyApplicationRunner implements ApplicationRunner {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private CourseRepository courseRepository;
 
     // TODO: Add Login Authentication
-    public MyApplicationRunner(StudentRepository studentRepository, CourseRepository courseRepository) {
-        this.studentRepository = studentRepository;
+    public MyApplicationRunner(UserRepository userRepository, CourseRepository courseRepository) {
+        this.userRepository = userRepository;
         this.courseRepository = courseRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        List<Student> students = List.of(
-                new Student("Abhishek", "Narvekar", "email", "0612458974"),
-                new Student("Felicity", "Smoak", "felicity@gmail.com", "0613272371263"),
-                new Student("Oliver", "Queen", "oliver@gmail.com", "06438748373")
+        List<User> students = List.of(
+                new User("Abhishek", "Narvekar", "email", "0612458974"),
+                new User("Felicity", "Smoak", "felicity@gmail.com", "0613272371263"),
+                new User("Oliver", "Queen", "oliver@gmail.com", "06438748373")
         );
 
         List<Course> courses = List.of(
@@ -48,7 +47,7 @@ public class MyApplicationRunner implements ApplicationRunner {
                 new Course("Web Developement 2", "Mark de Haan", 78)
         );
 
-        studentRepository.saveAll(students);
+        userRepository.saveAll(students);
         courseRepository.saveAll(courses);
     }
 }
