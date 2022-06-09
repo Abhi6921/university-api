@@ -1,5 +1,6 @@
 package com.abhicoder.universityapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,11 +22,15 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String username;
-    private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    List<Role> roles;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    List<Course> courses;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"user"})
+    private Parent parent;
 
     public User(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;

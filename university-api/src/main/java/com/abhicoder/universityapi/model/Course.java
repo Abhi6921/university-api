@@ -1,13 +1,11 @@
 package com.abhicoder.universityapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -21,10 +19,14 @@ public class Course {
     private String courseName;
     private String lecturerName;
     private Integer courseDuration;
+    @ManyToOne
+    @JsonIgnoreProperties({"courses"})
+    private User user;
 
-    public Course(String courseName, String lecturerName, Integer courseDuration) {
+    public Course(String courseName, String lecturerName, Integer courseDuration, User user) {
         this.courseName = courseName;
         this.lecturerName = lecturerName;
         this.courseDuration = courseDuration;
+        this.user = user;
     }
 }
